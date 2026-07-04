@@ -1,0 +1,24 @@
+---
+import { areas, PHONE, PHONE_TEL } from '../data/site';
+---
+
+<section class="section" id="areas">
+	<div class="container">
+		<div class="section-header">
+			<p class="section-label">Service Areas</p>
+			<h2 class="section-title">Servicing Adelaide, Hahndorf & Surrounding Areas</h2>
+			<p class="areas__text">
+				Water to Waste Plumbing & Gas Solutions works with customers across Hahndorf,
+				Mount Barker, Stirling, Brighton, Adelaide and nearby South Australian suburbs.
+			</p>
+		</div>
+
+		<div class="chips">
+			{areas.map((area) => <span class="chip">{area}</span>)}
+		</div>
+
+		<p class="areas__note">
+			If you are nearby and need plumbing help, <a href={PHONE_TEL}>call to check availability</a>.
+		</p>
+	</div>
+</section>

@@ -1,0 +1,26 @@
+---
+import { PHONE, PHONE_TEL, SHORT_NAME } from '../data/site';
+---
+
+<section class="section section--grey">
+	<div class="container">
+		<div class="section-header section-header--center">
+			<p class="section-label">Reviews</p>
+			<h2 class="section-title">A Local Plumbing Business Built on Trust</h2>
+		</div>
+
+		<div class="proof-card">
+			<p>
+				{SHORT_NAME} is building its online review profile. If you have used the business
+				and had a good experience, leaving a review helps other local customers choose a
+				trusted plumber.
+			</p>
+			<a href={PHONE_TEL} class="btn btn--primary">Call {SHORT_NAME}</a>
+		</div>
+
+		<figure class="testimonial-card">
+			<blockquote class="testimonial-card__quote">"Tom did a great job 👍"</blockquote>
+			<figcaption class="testimonial-card__label">Facebook comment</figcaption>
+		</figure>
+	</div>
+</section>

@@ -1,0 +1,45 @@
+---
+import { PHONE, PHONE_TEL } from '../data/site';
+---
+
+<header class="header">
+	<div class="container header__inner">
+		<a href="/" class="header__logo">
+			Water to <span>Waste</span> Plumbing & Gas Solutions
+		</a>
+
+		<nav class="header__nav" aria-label="Main navigation">
+			<a href="#services">Services</a>
+			<a href="#about">About</a>
+			<a href="#areas">Areas</a>
+			<a href="#contact">Contact</a>
+		</nav>
+
+		<a href={PHONE_TEL} class="btn btn--primary header__cta">
+			Call {PHONE}
+		</a>
+
+		<button
+			class="header__menu-btn"
+			id="menu-btn"
+			type="button"
+			aria-label="Open menu"
+			aria-expanded="false"
+			aria-controls="mobile-nav"
+		>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+
+	<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+		<a href="#services">Services</a>
+		<a href="#about">About</a>
+		<a href="#areas">Areas</a>
+		<a href="#contact">Contact</a>
+		<a href={PHONE_TEL} class="btn btn--primary" style="margin-top: 1rem; width: 100%;">
+			Call {PHONE}
+		</a>
+	</nav>
+</header>

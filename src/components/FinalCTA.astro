@@ -1,0 +1,23 @@
+---
+import { PHONE, PHONE_TEL, EMAIL } from '../data/site';
+---
+
+<section class="final-cta" id="contact">
+	<div class="container">
+		<h2 class="final-cta__title">
+			Need a Plumber or Gas Fitter You Can Call Directly?
+		</h2>
+		<p class="final-cta__subtitle">
+			For drain cleaning, CCTV inspections, hot water services, leaking taps, toilets,
+			general plumbing, gas services or emergency plumbing, contact Water to Waste Plumbing
+			& Gas Solutions today.
+		</p>
+		<a href={PHONE_TEL} class="final-cta__phone">{PHONE}</a>
+		<div class="btn-group">
+			<a href={PHONE_TEL} class="btn btn--primary btn--lg">Call Tom Now</a>
+			<a href={`mailto:${EMAIL}?subject=Free%20Quote%20Request`} class="btn btn--secondary btn--lg">
+				Request a Free Quote
+			</a>
+		</div>
+	</div>
+</section>

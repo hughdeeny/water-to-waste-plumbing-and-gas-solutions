@@ -1,0 +1,46 @@
+---
+import { trustPoints, PHONE, PHONE_TEL } from '../data/site';
+---
+
+<section class="section section--grey" id="about">
+	<div class="container">
+		<div class="trust">
+			<div class="trust__image">
+				<img
+					src="/images/owner.jpg"
+					alt="Tom from Water to Waste Plumbing & Gas Solutions standing in front of the branded service van"
+					width="960"
+					height="1280"
+					loading="lazy"
+				/>
+			</div>
+
+			<div class="trust__content">
+				<p class="section-label">About Us</p>
+				<h2 class="section-title">Local, Professional & Easy to Deal With</h2>
+				<p class="trust__body">
+					Water to Waste Plumbing & Gas Solutions is a South Australian plumbing and gas
+					business focused on reliable service, clear communication and quality workmanship.
+					With branded vehicles, professional equipment and a practical approach, the goal is
+					simple: help local customers solve plumbing problems without confusion or hassle.
+				</p>
+
+				<ul class="trust__list">
+					{
+						trustPoints.map((point) => (
+							<li>
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+									<polyline points="20 6 9 17 4 12" />
+								</svg>
+								{point}
+							</li>
+						))
+					}
+				</ul>
+
+				<p class="section-label" style="margin-bottom: 0.5rem;">Speak With Tom Today</p>
+				<a href={PHONE_TEL} class="btn btn--primary btn--lg">Call {PHONE}</a>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,52 @@
+---
+import { PHONE, PHONE_TEL } from '../data/site';
+---
+
+<section class="hero" id="top">
+	<div class="hero__bg" aria-hidden="true">
+		<img
+			src="/images/van-rear.jpg"
+			alt=""
+			width="1280"
+			height="960"
+			loading="eager"
+			fetchpriority="high"
+		/>
+		<div class="hero__overlay"></div>
+	</div>
+
+	<div class="container hero__content">
+		<h1 class="hero__title">
+			Reliable Plumbing & Gas Services Across Adelaide & the Hills
+		</h1>
+		<p class="hero__subtitle">
+			From blocked drains and hot water issues to leaking taps, toilets, gas work and
+			general plumbing, Water to Waste Plumbing & Gas Solutions helps local homes and
+			businesses get the job sorted quickly and professionally.
+		</p>
+
+		<div class="hero__trust">
+			<span>Local South Australian plumber</span>
+			<span>Emergency plumbing available</span>
+			<span>Hahndorf, Mount Barker, Stirling, Brighton & Adelaide</span>
+		</div>
+
+		<div class="btn-group">
+			<a href={PHONE_TEL} class="btn btn--primary btn--lg">
+				Call Tom Now: {PHONE}
+			</a>
+			<a href="#contact" class="btn btn--secondary btn--lg">
+				Get a Free Quote
+			</a>
+		</div>
+
+		<p class="hero__emergency">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+				<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+				<line x1="12" y1="9" x2="12" y2="13" />
+				<line x1="12" y1="17" x2="12.01" y2="17" />
+			</svg>
+			Need urgent help? Call now for fast plumbing support.
+		</p>
+	</div>
+</section>

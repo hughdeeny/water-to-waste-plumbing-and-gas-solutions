@@ -1,0 +1,36 @@
+---
+import { services } from '../data/site';
+import ServiceIcon from './ServiceIcon.astro';
+---
+
+<section class="section section--grey" id="services">
+	<div class="container">
+		<div class="section-header section-header--center">
+			<p class="section-label">Our Services</p>
+			<h2 class="section-title">
+				Plumbing Services That Keep Your Home or Business Running
+			</h2>
+			<p class="section-subtitle">
+				Whether it is an urgent issue or planned plumbing work, Water to Waste provides
+				practical, reliable plumbing and gas services across Adelaide and the surrounding
+				hills.
+			</p>
+		</div>
+
+		<div class="services-grid">
+			{
+				services.map((service) => (
+					<article class="service-card">
+						<div class="service-card__head">
+							<div class="service-card__icon">
+								<ServiceIcon name={service.icon} />
+							</div>
+							<h3 class="service-card__title">{service.title}</h3>
+						</div>
+						<p class="service-card__text">{service.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
