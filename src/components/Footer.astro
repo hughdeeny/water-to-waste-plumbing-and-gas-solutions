@@ -1,5 +1,16 @@
 ---
-import { BUSINESS_NAME, PHONE, PHONE_TEL, EMAIL, services } from '../data/site';
+import {
+	BUSINESS_NAME,
+	PHONE,
+	PHONE_TEL,
+	EMAIL,
+	EMAIL_MAILTO,
+	ADDRESS,
+	ABN,
+	LICENCE,
+	QUALIFICATION,
+	services,
+} from '../data/site';
 import SocialLinks from './SocialLinks.astro';
 ---
 
@@ -8,12 +19,14 @@ import SocialLinks from './SocialLinks.astro';
 		<div>
 			<p class="footer__brand">{BUSINESS_NAME}</p>
 			<p class="footer__tagline">Plumbing & Gas Services</p>
-			<p class="footer__tagline">Hahndorf, SA, Australia</p>
+			<p class="footer__tagline">{ADDRESS}</p>
+			<p class="footer__tagline">{QUALIFICATION} · Licence {LICENCE}</p>
+			<p class="footer__tagline">ABN {ABN}</p>
 			<p style="margin-top: 1rem;">
 				Phone: <a href={PHONE_TEL} class="footer__phone">{PHONE}</a>
 			</p>
 			<p>
-				Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+				Email: <a href={EMAIL_MAILTO}>{EMAIL}</a>
 			</p>
 			<SocialLinks />
 		</div>
@@ -21,17 +34,23 @@ import SocialLinks from './SocialLinks.astro';
 		<div>
 			<p class="footer__heading">Services</p>
 			<ul class="footer__links">
-				{services.map((service) => <li>{service.title}</li>)}
+				{
+					services.map((service) => (
+						<li>
+							<a href={`/services/${service.slug}/`}>{service.title}</a>
+						</li>
+					))
+				}
 			</ul>
 		</div>
 
 		<div>
 			<p class="footer__heading">Quick Links</p>
 			<ul class="footer__links">
-				<li><a href="#services">Services</a></li>
-				<li><a href="#about">About</a></li>
-				<li><a href="#areas">Areas</a></li>
-				<li><a href="#contact">Contact</a></li>
+				<li><a href="/#services">Services</a></li>
+				<li><a href="/#about">About</a></li>
+				<li><a href="/#areas">Areas</a></li>
+				<li><a href="/#contact">Contact</a></li>
 				<li><a href={PHONE_TEL}>Call {PHONE}</a></li>
 			</ul>
 		</div>

@@ -1,5 +1,5 @@
 ---
-import { PHONE, PHONE_TEL } from '../data/site';
+import { PHONE, PHONE_TEL, services } from '../data/site';
 ---
 
 <header class="header">
@@ -9,10 +9,26 @@ import { PHONE, PHONE_TEL } from '../data/site';
 		</a>
 
 		<nav class="header__nav" aria-label="Main navigation">
-			<a href="#services">Services</a>
-			<a href="#about">About</a>
-			<a href="#areas">Areas</a>
-			<a href="#contact">Contact</a>
+			<div class="nav-dropdown">
+				<a href="/#services" class="nav-dropdown__trigger">
+					Services
+					<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+						<polyline points="6 9 12 15 18 9" />
+					</svg>
+				</a>
+				<ul class="nav-dropdown__menu" role="list">
+					{
+						services.map((service) => (
+							<li>
+								<a href={`/services/${service.slug}/`}>{service.title}</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+			<a href="/#about">About</a>
+			<a href="/#areas">Areas</a>
+			<a href="/#contact">Contact</a>
 		</nav>
 
 		<a href={PHONE_TEL} class="btn btn--primary header__cta">
@@ -34,10 +50,35 @@ import { PHONE, PHONE_TEL } from '../data/site';
 	</div>
 
 	<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-		<a href="#services">Services</a>
-		<a href="#about">About</a>
-		<a href="#areas">Areas</a>
-		<a href="#contact">Contact</a>
+		<div class="mobile-nav__services">
+			<button
+				type="button"
+				class="mobile-nav__services-toggle"
+				id="services-toggle"
+				aria-expanded="false"
+				aria-controls="mobile-services"
+			>
+				Services
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+					<polyline points="6 9 12 15 18 9" />
+				</svg>
+			</button>
+			<ul class="mobile-nav__services-list" id="mobile-services" hidden>
+				<li>
+					<a href="/#services">View services overview</a>
+				</li>
+				{
+					services.map((service) => (
+						<li>
+							<a href={`/services/${service.slug}/`}>{service.title}</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+		<a href="/#about">About</a>
+		<a href="/#areas">Areas</a>
+		<a href="/#contact">Contact</a>
 		<a href={PHONE_TEL} class="btn btn--primary" style="margin-top: 1rem; width: 100%;">
 			Call {PHONE}
 		</a>

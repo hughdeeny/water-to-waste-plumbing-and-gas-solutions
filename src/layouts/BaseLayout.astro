@@ -1,16 +1,90 @@
 ---
 import '../styles/global.css';
-import { BUSINESS_NAME, PHONE } from '../data/site';
+import {
+	BUSINESS_NAME,
+	PHONE,
+	PHONE_TEL,
+	EMAIL,
+	ADDRESS,
+	ABN,
+	LICENCE,
+	QUALIFICATION,
+	INSURANCE,
+	SITE_URL,
+	SHORT_NAME,
+} from '../data/site';
 
 interface Props {
 	title?: string;
 	description?: string;
+	canonical?: string;
+	ogTitle?: string;
+	ogDescription?: string;
+	ogImage?: string;
+	jsonLd?: Record<string, unknown>[];
 }
 
 const {
-	title = `${BUSINESS_NAME} | Plumbing & Gas Services Hahndorf & Adelaide`,
-	description = 'Reliable plumbing and gas services across Hahndorf, Mount Barker, Stirling, Brighton and Adelaide. Drain cleaning, CCTV inspections, hot water, leaks and emergency plumbing. Call Tom on 0403 305 133.',
+	title = `${BUSINESS_NAME} | Plumbing & Gas Services Adelaide Hills`,
+	description = `Reliable plumbing and gas services across the Adelaide Hills, Murray Bridge and metropolitan Adelaide. Drain clearing, CCTV inspections, hot water, gas plumbing and general repairs. Call ${PHONE}.`,
+	canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : `${SITE_URL}${Astro.url.pathname}`,
+	ogTitle = title,
+	ogDescription = description,
+	ogImage = `${SITE_URL}/images/van-rear.jpg`,
+	jsonLd = [],
 } = Astro.props;
+
+const localBusinessSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'PlumbingService',
+	'@id': `${SITE_URL}/#business`,
+	name: BUSINESS_NAME,
+	alternateName: SHORT_NAME,
+	url: SITE_URL,
+	telephone: PHONE_TEL.replace('tel:', ''),
+	email: EMAIL,
+	image: `${SITE_URL}/images/owner.jpg`,
+	description,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: '13/8 Innovation Drive',
+		addressLocality: 'Totness',
+		addressRegion: 'SA',
+		addressCountry: 'AU',
+	},
+	areaServed: [
+		{ '@type': 'AdministrativeArea', name: 'Adelaide Hills' },
+		{ '@type': 'City', name: 'Murray Bridge' },
+		{ '@type': 'City', name: 'Adelaide' },
+		{ '@type': 'Place', name: 'Totness' },
+	],
+	hasCredential: [
+		{
+			'@type': 'EducationalOccupationalCredential',
+			credentialCategory: QUALIFICATION,
+		},
+		{
+			'@type': 'EducationalOccupationalCredential',
+			credentialCategory: `Licence ${LICENCE}`,
+		},
+	],
+	slogan: 'Service and reliability',
+	taxID: ABN,
+	additionalProperty: [
+		{
+			'@type': 'PropertyValue',
+			name: 'Public liability insurance',
+			value: INSURANCE,
+		},
+		{
+			'@type': 'PropertyValue',
+			name: 'Business address',
+			value: ADDRESS,
+		},
+	],
+};
+
+const schemas = [localBusinessSchema, ...jsonLd];
 ---
 
 <!doctype html>
@@ -23,6 +97,18 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#111111" />
+		<link rel="canonical" href={canonical} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={BUSINESS_NAME} />
+		<meta property="og:title" content={ogTitle} />
+		<meta property="og:description" content={ogDescription} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:locale" content="en_AU" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={ogTitle} />
+		<meta name="twitter:description" content={ogDescription} />
+		<meta name="twitter:image" content={ogImage} />
 		<title>{title}</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,16 +116,29 @@ const {
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
 			rel="stylesheet"
 		/>
+		{
+			schemas.map((schema) => (
+				<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+			))
+		}
 	</head>
 	<body>
 		<slot />
 		<script>
 			const menuBtn = document.getElementById('menu-btn');
 			const mobileNav = document.getElementById('mobile-nav');
+			const servicesToggle = document.getElementById('services-toggle');
+			const mobileServices = document.getElementById('mobile-services');
 
 			menuBtn?.addEventListener('click', () => {
 				const isOpen = mobileNav?.classList.toggle('is-open');
 				menuBtn.setAttribute('aria-expanded', String(isOpen));
+			});
+
+			servicesToggle?.addEventListener('click', () => {
+				const isExpanded = servicesToggle.getAttribute('aria-expanded') === 'true';
+				servicesToggle.setAttribute('aria-expanded', String(!isExpanded));
+				mobileServices?.toggleAttribute('hidden', isExpanded);
 			});
 
 			mobileNav?.querySelectorAll('a').forEach((link) => {

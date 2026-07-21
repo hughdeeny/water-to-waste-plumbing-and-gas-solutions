@@ -1,5 +1,5 @@
 ---
-import { services } from '../data/site';
+import { homepageServices } from '../data/site';
 import ServiceIcon from './ServiceIcon.astro';
 ---
 
@@ -12,15 +12,15 @@ import ServiceIcon from './ServiceIcon.astro';
 			</h2>
 			<p class="section-subtitle">
 				Whether it is an urgent issue or planned plumbing work, Water to Waste provides
-				practical, reliable plumbing and gas services across Adelaide and the surrounding
-				hills.
+				practical, reliable plumbing and gas services across the Adelaide Hills, Murray
+				Bridge and metropolitan Adelaide.
 			</p>
 		</div>
 
 		<div class="services-grid">
 			{
-				services.map((service) => (
-					<article class="service-card">
+				homepageServices.map((service) => (
+					<a href={`/services/${service.slug}/`} class="service-card service-card--link">
 						<div class="service-card__head">
 							<div class="service-card__icon">
 								<ServiceIcon name={service.icon} />
@@ -28,7 +28,7 @@ import ServiceIcon from './ServiceIcon.astro';
 							<h3 class="service-card__title">{service.title}</h3>
 						</div>
 						<p class="service-card__text">{service.description}</p>
-					</article>
+					</a>
 				))
 			}
 		</div>
